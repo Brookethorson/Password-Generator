@@ -9,30 +9,30 @@ let uppercaseCheck;
 let numberCheck;
 let specialCheck;
 
-//Password Length Function
-function asklength () {
+//Function to ask User password length
+function promptlength () {
   passwordLength = prompt("Please enter the number of characters for password length. Between 8-128 characters.");
   
   if (passwordLength<8){
     alert("Password length is too short. Must be between 8-128 characters");
-    asklength();
+    promptlength();
   } else if (passwordLength>128) {
     alert("Password length is too long. Must be between8-128 characters");
-    asklength();
+    promptlength();
   }else {
     alert("Complete the following three prompts to format your password.");
   }
   return passwordLength;
 }
 
-//Uppercase inquiry Function
-function askUppercase(){
+//Function used to ask the User if the password should include uppercase characters
+function promptUppercase(){
   checkuppercase = prompt("Would you like to include uppercase characters? \n(Yes or No)");
   checkuppercase = checkuppercase.toLowerCase();
 
   if (checkuppercase === null ||checkuppercase ===""){
     alert("Please enter Yes or No");
-    askUppercase();
+    promptUppercase();
 
   }else if (checkuppercase === "yes" ||checkuppercase ==="y"){
     checkuppercase = true;
@@ -40,21 +40,53 @@ function askUppercase(){
 
   }else if (checkuppercase === "no" || checkuppercase==="n"){
     checkuppercase = false;
-    return checkuppercase
+    return checkuppercase;
 
   }else {
   alert ("Please enter Yes or No");
-  askUppercase();
+  promptUppercase();
   }
 return checkuppercase
 }
 
+//Function used to ask the User if the password should included numebers
+function promptNumbers(){
+  numberCheck = prompt("Would you like to include numerical characters? \n(Yes or No)");
+  numberCheck.numberChar.toLowerCase();
+
+  if (numberCheck === null || numberCheck === ""){
+    alert("Please enter Yes or No.")
+    promptNumbers();
+
+  }else if (numberCheck === "yes" || numberCheck ==="y"){
+    numberCheck = true; 
+    return numberCheck;
+  
+  }else if (numberCheck === "no" || numberCheck ==="n"){
+    numberCheck = false;
+    return numberCheck;
+
+  }else {
+    alert("Please enter Yes or No");
+    promptNumbers();
+  }
+  return numberCheck;
+}
+
+
+
+
+
+
+
 //Generate Password Function based on the above functions
 function generatePassword () {
-  asklength();
+  promptlength();
   console.log(passwordLength);
-  askUppercase();
+  promptUppercase();
   console.log(uppercaseCheck)
+  promptNumbers()
+  console.log(numbercheck)
 }
 
 
