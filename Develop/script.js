@@ -27,32 +27,32 @@ function promptlength () {
 
 //Function used to ask the User if the password should include uppercase characters
 function promptUppercase(){
-  checkuppercase = prompt("Would you like to include uppercase characters? \n(Yes or No)");
-  checkuppercase = checkuppercase.toLowerCase();
+ uppercaseCheck = prompt("Would you like to include uppercase characters? \n(Yes or No)");
+  uppercaseCheck = uppercaseCheck.toLowerCase();
 
-  if (checkuppercase === null ||checkuppercase ===""){
+  if (uppercaseCheck === null ||uppercaseCheck ===""){
     alert("Please enter Yes or No");
     promptUppercase();
 
-  }else if (checkuppercase === "yes" ||checkuppercase ==="y"){
-    checkuppercase = true;
-    return checkuppercase
+  }else if (uppercaseCheck === "yes" ||uppercaseCheck ==="y"){
+    uppercaseCheck = true;
+    return uppercaseCheck
 
-  }else if (checkuppercase === "no" || checkuppercase==="n"){
-    checkuppercase = false;
-    return checkuppercase;
+  }else if (uppercaseCheck === "no" || uppercaseCheck==="n"){
+    uppercaseCheck = false;
+    return uppercaseCheck;
 
   }else {
   alert ("Please enter Yes or No");
   promptUppercase();
   }
-return checkuppercase
+return uppercaseCheck
 }
 
-//Function used to ask the User if the password should included numebers
+//Function used to ask the User if the password should included numbers
 function promptNumbers(){
   numberCheck = prompt("Would you like to include numerical characters? \n(Yes or No)");
-  numberCheck.numberChar.toLowerCase();
+  numberCheck = numberCheck.toLowerCase();
 
   if (numberCheck === null || numberCheck === ""){
     alert("Please enter Yes or No.")
@@ -73,33 +73,88 @@ function promptNumbers(){
   return numberCheck;
 }
 
+////Function used to ask the User if the password should included special charcters
+function promptSpecial(){
+  specialCheck = prompt("Would you like to include special characters? \n(Yes or No)");
+  specialCheck = specialCheck.toLowerCase();
+
+  if (specialCheck === null || specialCheck === ""){
+    alert("Please enter Yes or No.")
+    promptSpecial();
+
+  }else if (specialCheck === "yes" || specialCheck ==="y"){
+    specialCheck = true; 
+    return specialCheck;
+  
+  }else if (specialCheck=== "no" || specialCheck ==="n"){
+    specialCheck = false;
+    return specialCheck;
+
+  }else {
+    alert("Please enter Yes or No");
+    promptSpecial();
+  }
+  return specialCheck;
+}
 
 
 
 
 
-
-//Generate Password Function based on the above functions
-function generatePassword () {
+//Generate Password Function 
+function generatePassword() {
   promptlength();
   console.log(passwordLength);
   promptUppercase();
   console.log(uppercaseCheck)
   promptNumbers()
-  console.log(numbercheck)
+  console.log(numberCheck)
+  promptSpecial()
+  console.log(specialCheck)
+  
+  let characters = lowercaseChar;
+  let password = "";
+  if (uppercaseCheck && numberCheck && specialCheck){
+  characters +=uppercaseChar + numberChar + specialChar;
+
+  }else if (uppercaseCheck && numberCheck) {
+  characters += uppercaseChar + numberChar;
+
+  }else if (numberCheck && specialCheck){
+  characters += numberChar + specialChar;
+
+  }else if (uppercaseCheck && specialCheck){
+  characters += uppercaseChar + specialChar;
+
+  }else if (uppercaseCheck){
+  characters += uppercaseChar;
+
+  }else if (numberCheck){
+  characters += numberChar;
+
+  }else if (specialCheck){
+  characters += specialChar;
+
+  }else{
+  characters ===lowercaseChar;
+  }
+
+  for(let i = 0; i <passwordLength; i++){
+  password += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  return password
 }
 
 
 
-//Write password to the #password input
+//Write password to input field 
 function writePassword() {
-  let passwordA1="";
-  passwordA1 = generatePassword();
+  let password1="";
+  password1 = generatePassword();
   let passwordText = document.querySelector("#password");
-  passwordText.value = passwordA1;
+  passwordText.value = password1;
 }
-
-
 
 
 
