@@ -27,7 +27,7 @@ function promptlength () {
 
 //Function used to ask the User if the password should include uppercase characters
 function promptUppercase(){
- uppercaseCheck = prompt("Would you like to include uppercase characters? \n(Yes or No)");
+ uppercaseCheck = prompt("Would you like to include uppercase characters? Selecting No will produce an password that only contains lowercase characters. \n(Yes or No)");
   uppercaseCheck = uppercaseCheck.toLowerCase();
 
   if (uppercaseCheck === null ||uppercaseCheck ===""){
